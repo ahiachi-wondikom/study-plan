@@ -3,7 +3,7 @@ const Button = ({ children, variant = 'primary', icon, onClick }) => {
 		padding: '12px 20px',
 		borderRadius: '10px',
 		border: variant === 'primary' ? 'none' : '2px solid #0567F3',
-		background: variant === 'primary' ? '#0567F3' : 'transparent', // FIXED
+		background: variant === 'primary' ? '#0567F3' : 'transparent',
 		color: variant === 'primary' ? '#fff' : '#0567F3',
 		display: 'flex',
 		gap: '8px',
@@ -14,7 +14,6 @@ const Button = ({ children, variant = 'primary', icon, onClick }) => {
 	return (
 		<button style={styles} type='button' onClick={onClick}>
 			{' '}
-			{/* ADDED onClick */}
 			{icon && icon}
 			{children}
 		</button>

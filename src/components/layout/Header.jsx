@@ -28,16 +28,9 @@ const Header = () => {
 	return (
 		<div style={styles}>
 			<div style={leftSideStyles}>
-				<Avatar
-					src={profilePhoto} // ← Pass as PROP
-					name='Salesh'
-					size='40px'
-				/>
+				<Avatar src={profilePhoto} name='Salesh' size='40px' />
 				<h2 style={greetingStyles}>Hi, Salesh!</h2>
 			</div>
-
-			{/* Right side: Empty for now (maybe add icons later) */}
-			<div>{/* Search icon, notifications, etc. can go here */}</div>
 		</div>
 	)
 }

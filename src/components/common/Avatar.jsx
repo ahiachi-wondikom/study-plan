@@ -4,7 +4,6 @@ import { theme } from '../../styles/theme'
 const Avatar = ({ src, name = 'User', size = '40px' }) => {
 	const [imageError, setImageError] = useState(false)
 
-	// Get first letter of name for fallback
 	const getInitial = () => name.charAt(0).toUpperCase()
 
 	const styles = {
@@ -21,7 +20,6 @@ const Avatar = ({ src, name = 'User', size = '40px' }) => {
 		overflow: 'hidden',
 	}
 
-	// Show image if available and not broken
 	if (src && !imageError) {
 		return (
 			<img
