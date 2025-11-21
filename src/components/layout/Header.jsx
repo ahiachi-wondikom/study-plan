@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from '../common/Avatar'
 import { theme } from '../../styles/theme'
+import profilePhoto from '../../assets/Salesh.jpg'
 
 const Header = () => {
 	const styles = {
@@ -27,7 +28,11 @@ const Header = () => {
 	return (
 		<div style={styles}>
 			<div style={leftSideStyles}>
-				<Avatar name='Salesh' size='40px' />
+				<Avatar
+					src={profilePhoto} // ← Pass as PROP
+					name='Salesh'
+					size='40px'
+				/>
 				<h2 style={greetingStyles}>Hi, Salesh!</h2>
 			</div>
 

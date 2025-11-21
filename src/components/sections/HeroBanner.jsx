@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../common/Button'
 import { theme } from '../../styles/theme'
+import bookCover from '../../assets/bookCover.jpg'
 
 const HeroBanner = () => {
 	const containerStyles = {
@@ -44,10 +45,8 @@ const HeroBanner = () => {
 
 	return (
 		<div style={containerStyles}>
-			{/* Book Cover */}
-			<div style={bookCoverStyles}>📚</div>
+			<img src={bookCover} alt='Book cover' style={bookCoverStyles} />
 
-			{/* Content */}
 			<div style={contentStyles}>
 				<p style={labelStyles}>📚 You were studying</p>
 				<h3 style={titleStyles}>
