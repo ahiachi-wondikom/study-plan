@@ -33,7 +33,6 @@ const Avatar = ({ src, name = 'User', size = '40px' }) => {
 		)
 	}
 
-	// Show initial if no image
 	return <div style={styles}>{getInitial()}</div>
 }
 

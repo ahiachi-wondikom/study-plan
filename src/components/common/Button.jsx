@@ -20,3 +20,5 @@ const Button = ({ children, variant = 'primary', icon, onClick }) => {
 		</button>
 	)
 }
+
+export default Button
