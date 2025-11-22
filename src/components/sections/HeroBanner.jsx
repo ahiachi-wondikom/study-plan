@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../common/Button'
 import { theme } from '../../styles/theme'
 import bookCover from '../../assets/bookCover.jpg'
+import { Pause } from 'lucide-react'
 
 const HeroBanner = () => {
 	const containerStyles = {
@@ -43,16 +44,40 @@ const HeroBanner = () => {
 		lineHeight: 1.4,
 	}
 
+	const iconWrapperStyles = {
+		backgroundColor: '#FFB800',
+		borderRadius: '50%',
+		width: '20px',
+		height: '20px',
+		// display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexShrink: 0,
+		marginRight: '8px',
+	}
+
 	return (
 		<div style={containerStyles}>
 			<img src={bookCover} alt='Book cover' style={bookCoverStyles} />
 
 			<div style={contentStyles}>
-				<p style={labelStyles}>📚 You were studying</p>
+				{/* Remove the extra div here! */}
+				<p style={labelStyles}>
+					<span style={iconWrapperStyles}>
+						<Pause size={12} fill='white' strokeWidth={0} />
+					</span>
+					You were studying
+				</p>
+
 				<h3 style={titleStyles}>
 					The Balance Between National Security and Individual Privacy Rights
 				</h3>
-				<Button variant='outline' icon={<span>▶</span>}>
+
+				<Button
+					variant='outline'
+					endIcon={<span>→</span>}
+					onClick={() => console.log('Resume study clicked!')}
+				>
 					Resume Study
 				</Button>
 			</div>
