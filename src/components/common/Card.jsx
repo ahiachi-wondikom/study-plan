@@ -1,6 +1,8 @@
 import React from 'react'
 import ProgressBar from './ProgressBar'
 import { theme } from '../../styles/theme'
+import Avatar from './Avatar'
+import profilePhoto from '../../assets/Salesh.jpg'
 
 const Card = ({
 	title = 'Study Block',
@@ -9,8 +11,9 @@ const Card = ({
 	totalCards = 0,
 	masteredCards = 0,
 	teacherName = '',
-	teacherAvatar = '👨‍🏫',
+	teacherAvatar = 'Avatar',
 	onClick,
+	onIconClick,
 	style = {},
 }) => {
 	// Main card container
@@ -62,6 +65,22 @@ const Card = ({
 		textAlign: 'center',
 	}
 
+	const actionButtonStyles = {
+		position: 'absolute',
+		top: '16px',
+		right: '16px',
+		width: '32px',
+		height: '32px',
+		backgroundColor: '#2196F3',
+		borderRadius: '8px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		cursor: 'pointer',
+		border: 'none',
+		transition: 'all 0.2s ease',
+	}
+
 	// Footer section (cards info + teacher)
 	const footerStyles = {
 		display: 'flex',
@@ -91,17 +110,16 @@ const Card = ({
 		color: theme.colors.text.secondary,
 	}
 
-	const teacherAvatarStyles = {
-		width: '24px',
-		height: '24px',
-		borderRadius: '50%',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		fontSize: '14px',
-	}
+	// const teacherAvatarStyles = {
+	// 	width: '24px',
+	// 	height: '24px',
+	// 	borderRadius: '50%',
+	// 	display: 'flex',
+	// 	alignItems: 'center',
+	// 	justifyContent: 'center',
+	// 	fontSize: '14px',
+	// }
 
-	// Hover effect
 	const [isHovered, setIsHovered] = React.useState(false)
 
 	const hoverStyles =
@@ -119,21 +137,52 @@ const Card = ({
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			{/* Header: Title + Progress Badge */}
 			<div style={headerStyles}>
 				<div style={titleContainerStyles}>
+					<div
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							gap: '8px',
+							maxWidth: '60%',
+							margin: '0 auto',
+						}}
+					>
+						<div style={{ flex: 1 }}>
+							{' '}
+							<ProgressBar percentage={progress} />
+						</div>
+						<div style={progressBadgeStyles}>{progress}%</div>{' '}
+					</div>
 					<h3 style={titleStyles}>{title}</h3>
 					{subtitle && <p style={subtitleStyles}>{subtitle}</p>}
 				</div>
-				<div style={progressBadgeStyles}>{progress}%</div>
-			</div>
 
-			{/* Progress Bar */}
-			<ProgressBar percentage={progress} />
+				<div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+					{/* Blue Icon Button */}
+					<button
+						style={actionButtonStyles}
+						onClick={(e) => {
+							e.stopPropagation()
+							onIconClick?.()
+						}}
+					>
+						<svg
+							width='16'
+							height='16'
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='white'
+							strokeWidth='2'
+						>
+							<path d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z' />
+						</svg>
+					</button>
+				</div>
+			</div>
 
 			{/* Footer: Stats + Teacher */}
 			<div style={footerStyles}>
-				{/* Left: Cards Stats */}
 				<div style={statsStyles}>
 					<div style={statItemStyles}>
 						<span>📝</span>
@@ -145,11 +194,10 @@ const Card = ({
 					</div>
 				</div>
 
-				{/* Right: Teacher Info */}
 				{teacherName && (
 					<div style={teacherStyles}>
-						<div style={teacherAvatarStyles}>{teacherAvatar}</div>
 						<span>{teacherName}</span>
+						{teacherAvatar}
 					</div>
 				)}
 			</div>
@@ -158,106 +206,3 @@ const Card = ({
 }
 
 export default Card
-
-// ============================================
-// USAGE EXAMPLES
-// ============================================
-
-/*
-
-// 1. BASIC CARD (Like in your design)
-<Card 
-  title="Chemical Compounds"
-  subtitle="Grade 9, Term One, 2024"
-  progress={60}
-  totalCards={120}
-  masteredCards={50}
-  teacherName="Maggie Norris"
-  teacherAvatar="👩‍🏫"
-  onClick={() => console.log('Card clicked!')}
-/>
-
-// 2. SIMPLE CARD (Minimal info)
-<Card 
-  title="Physics Basics"
-  progress={45}
-  totalCards={80}
-  masteredCards={36}
-/>
-
-// 3. WITHOUT TEACHER INFO
-<Card 
-  title="Mathematics"
-  subtitle="Algebra Chapter 1"
-  progress={90}
-  totalCards={50}
-  masteredCards={45}
-/>
-
-// 4. MULTIPLE CARDS IN A LIST
-<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-  <Card 
-    title="Chemical Compounds"
-    subtitle="Grade 9, Term One, 2024"
-    progress={60}
-    totalCards={120}
-    masteredCards={50}
-    teacherName="Maggie Norris"
-    teacherAvatar="👩‍🏫"
-  />
-  
-  <Card 
-    title="Biology Basics"
-    subtitle="Grade 9, Term Two, 2024"
-    progress={75}
-    totalCards={100}
-    masteredCards={75}
-    teacherName="John Smith"
-    teacherAvatar="👨‍🏫"
-  />
-  
-  <Card 
-    title="Physics Laws"
-    subtitle="Grade 10, Term One, 2024"
-    progress={40}
-    totalCards={90}
-    masteredCards={36}
-    teacherName="Sarah Johnson"
-    teacherAvatar="👩‍🔬"
-  />
-</div>
-
-// 5. CLICKABLE CARD (Navigate to detail page)
-<Card 
-  title="History Timeline"
-  progress={85}
-  totalCards={60}
-  masteredCards={51}
-  onClick={() => navigate('/study/history')}
-/>
-
-// 6. CUSTOM STYLING
-<Card 
-  title="Art History"
-  progress={50}
-  totalCards={40}
-  masteredCards={20}
-  style={{
-    border: '2px solid #0567F3',
-    backgroundColor: '#F5F9FF',
-  }}
-/>
-
-// 7. WITH REAL TEACHER PHOTO (Using Avatar component)
-import Avatar from './Avatar';
-
-<Card 
-  title="Literature"
-  progress={95}
-  totalCards={200}
-  masteredCards={190}
-  teacherAvatar={<Avatar src="/teacher.jpg" name="Emma Wilson" size="24px" />}
-  teacherName="Emma Wilson"
-/>
-
-*/

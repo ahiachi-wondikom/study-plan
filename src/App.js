@@ -1,8 +1,10 @@
 import React from 'react'
 import Header from './components/layout/Header'
 import HeroBanner from './components/sections/HeroBanner'
-import ProgressBar from './components/common/ProgressBar'
+// import ProgressBar from './components/common/ProgressBar'
 import Card from './components/common/Card'
+import ActionButtons from './components/sections/ActionButtons'
+import BottomNav from './components/layout/BottomNav'
 // import './App.css'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
 		>
 			<Header />
 			<HeroBanner />
+			<ActionButtons />
 			<div
 				style={{
 					padding: '20px',
@@ -46,6 +49,8 @@ function App() {
 					teacherAvatar='👩‍🏫'
 					onClick={() => alert('Card clicked!')}
 				/>
+
+				<BottomNav />
 			</div>
 		</div>
 	)

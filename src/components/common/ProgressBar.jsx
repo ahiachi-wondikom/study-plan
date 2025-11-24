@@ -28,7 +28,7 @@ const ProgressBar = ({
 		width: `${validPercentage}%`,
 		backgroundColor: color,
 		borderRadius: '100px',
-		transition: 'width 0.3s ease', // Smooth animation
+		transition: 'width 0.3s ease',
 	}
 
 	// Wrapper for bar + label
